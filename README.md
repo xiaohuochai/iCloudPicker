@@ -10,7 +10,6 @@ UIDocumentPickerViewController
 Simply add the following line to your Podfile:
 ```  
 pod 'ICloudPicker'
-
 ```
 # Use
 ```func openICloudDocumentPickerViewController() {
