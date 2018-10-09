@@ -1,6 +1,10 @@
 # iCloudPicker
-UIDocumentPickerViewController
 
+swift 版本
+ 特点：- 1、直接显示到 iCloud 云盘位置
+      - 2、可以自定义主题颜色、（微信自定义了主题颜色）
+      - 3、使用 UIDocument 来读写文件保证文件的安全访问
+      
 [https://github.com/xiaohuochai/iCloudPicker.git](https://github.com/xiaohuochai/iCloudPicker.git)
 
 
