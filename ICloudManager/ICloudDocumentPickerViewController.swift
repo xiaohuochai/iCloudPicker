@@ -11,7 +11,7 @@ import UIKit
 public class ICloudDocumentPickerViewController: UIDocumentPickerViewController {
     
     /// 主题颜色
-    var themeColor: UIColor?
+    public var themeColor: UIColor?
     
     public override func viewDidLoad() {
         super.viewDidLoad()

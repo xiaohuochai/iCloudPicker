@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ICloudPicker"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "icloud driver picker"
   s.swift_version = '4.0'
 
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                    icloud driver picker
+                        icloud driver picker
                    DESC
 
   s.homepage     = "https://github.com/xiaohuochai/iCloudPicker.git"
