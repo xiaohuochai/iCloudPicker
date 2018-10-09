@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ICloudDocumentPickerViewController: UIDocumentPickerViewController {
+public class ICloudDocumentPickerViewController: UIDocumentPickerViewController {
     
     /// 主题颜色
     var themeColor: UIColor?

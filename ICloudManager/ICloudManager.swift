@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ICloudManager: NSObject {
+public class ICloudManager: NSObject {
 
     /// 存放的默认路径
     static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/"
