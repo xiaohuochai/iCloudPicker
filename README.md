@@ -23,7 +23,7 @@ pod 'ICloudPicker'
 
 # Xcode config
 
-<img src="http://pgbrhokqt.bkt.clouddn.com/11222.png" width = 30% height = 30% />
+<img src="http://pgbrhokqt.bkt.clouddn.com/11222.png" width = 80% height = 80% />
 
 # Use
 ```
