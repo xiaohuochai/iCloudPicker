@@ -13,7 +13,7 @@ public class ICloudDocumentPickerViewController: UIDocumentPickerViewController 
     /// 主题颜色
     var themeColor: UIColor?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         modalPresentationStyle = .fullScreen
         modalTransitionStyle = .coverVertical
@@ -22,7 +22,7 @@ public class ICloudDocumentPickerViewController: UIDocumentPickerViewController 
     /// 设置主题颜色
     ///
     /// - Parameter animated:
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let themeColor = themeColor {
             UIImageView.appearance().tintColor = themeColor
@@ -38,7 +38,7 @@ public class ICloudDocumentPickerViewController: UIDocumentPickerViewController 
     /// 恢复系统主题颜色
     ///
     /// - Parameter animated:
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let _ = themeColor {
             let defaultTintColor: UIColor = .blue
