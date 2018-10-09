@@ -20,6 +20,11 @@ Simply add the following line to your Podfile:
 ```  
 pod 'ICloudPicker'
 ```
+
+# Xcode config
+
+<img src="http://pgbrhokqt.bkt.clouddn.com/11222.png" width = 30% height = 30% />
+
 # Use
 ```
 func openICloudDocumentPickerViewController() {
@@ -77,4 +82,4 @@ func iCloudBoxCache() {
 }
 ```
 #  view
-<img src="http://oo6oh08d7.bkt.clouddn.com/123456789.png" width = 30% height = 30% />
+<img src="http://pgbrhokqt.bkt.clouddn.com/Screen%20Shot%202018-10-09%20at%203.21.16%20PM.png" width = 30% height = 30% />
