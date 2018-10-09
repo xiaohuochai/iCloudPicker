@@ -12,7 +12,8 @@ Simply add the following line to your Podfile:
 pod 'ICloudPicker'
 ```
 # Use
-```func openICloudDocumentPickerViewController() {
+```
+func openICloudDocumentPickerViewController() {
     guard ICloudManager.iCloudEnable() else {
       debugPrint("请在设置->AppleID、iCloud->iCloud中打开访问权限")
       return
