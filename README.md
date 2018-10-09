@@ -42,5 +42,7 @@ extension ViewController: UIDocumentPickerDelegate {
 }
 ```
 #  view
+<img src="http://oo6oh08d7.bkt.clouddn.com/123456789.png" width = 30% height = 30% />
+
 ![效果](http://oo6oh08d7.bkt.clouddn.com/123456789.png)
 
