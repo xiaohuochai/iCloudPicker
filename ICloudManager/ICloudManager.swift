@@ -11,8 +11,8 @@ import UIKit
 public class ICloudManager: NSObject {
 
     /// 存放的默认路径
-    static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/"
-
+    public static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/"
+    
     /// 判断iCloud是否可用
     ///
     /// - Returns: ture false
