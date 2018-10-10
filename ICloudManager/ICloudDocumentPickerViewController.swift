@@ -25,13 +25,7 @@ public class ICloudDocumentPickerViewController: UIDocumentPickerViewController 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let themeColor = themeColor {
-            UIImageView.appearance().tintColor = themeColor
-            UITabBar.appearance().tintColor = themeColor
-            UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = themeColor
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:themeColor], for: .normal)
-            UILabel.appearance().tintColor = themeColor
-            UIButton.appearance().tintColor = themeColor
-            view.tintColor = themeColor
+           configureThemeColor(themeColor)
         }
     }
     
@@ -41,14 +35,20 @@ public class ICloudDocumentPickerViewController: UIDocumentPickerViewController 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let _ = themeColor {
-            let defaultTintColor: UIColor = .blue
-            UIImageView.appearance().tintColor = defaultTintColor
-            UITabBar.appearance().tintColor = defaultTintColor
-            UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = defaultTintColor
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:defaultTintColor], for: .normal)
-            UILabel.appearance().tintColor = defaultTintColor
-            UIButton.appearance().tintColor = defaultTintColor
-            view.tintColor = defaultTintColor
+            configureThemeColor(.blue)
         }
+    }
+    
+    /// 设置主题颜色
+    ///
+    /// - Parameter themeColor:
+    func configureThemeColor(_ themeColor: UIColor) {
+        UIImageView.appearance().tintColor = themeColor
+        UITabBar.appearance().tintColor = themeColor
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = themeColor
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:themeColor], for: .normal)
+        UILabel.appearance().tintColor = themeColor
+        UIButton.appearance().tintColor = themeColor
+        view.tintColor = themeColor
     }
 }

@@ -58,7 +58,7 @@ extension ViewController: UIDocumentPickerDelegate {
     guard let url = urls.first else {
       return
     }
-    ICloudManager.save(with: url, maxSize: 10*1024*1024) { (location, result, errorMsg) in
+    ICloudManager.save(with: url, maxSize: 10*1024*1024) { (documentModel, result, errorMsg) in
 
     }
   }
