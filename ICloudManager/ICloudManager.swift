@@ -9,9 +9,11 @@
 import UIKit
 
 public class ICloudManager: NSObject {
-
+    
     /// 存放的默认路径
-    public static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/"
+    public static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/Doc"
+    
+    public static let iCloudBoxDownLoadPath = NSHomeDirectory() + "/Documents/iCloudBox/Download/"
     
     /// 判断iCloud是否可用
     ///
@@ -48,40 +50,67 @@ public class ICloudManager: NSObject {
     ///   - maxSize: 保存的最大尺寸 为 nil 忽略
     ///   - callBack: 保存h的路径 url、是否保存成功、保存失败的描述
     public class func save(with documentURL: URL, maxSize: Float?, callBack: @escaping (ICloudDocumentModel?, Bool, String) -> Void) {
-
+        
         guard ICloudManager.iCloudEnable() else {
             callBack(nil, false, "请在设置->AppleID、iCloud->iCloud中打开访问权限")
             return
         }
-
-        if let fileName = documentURL.lastPathComponent.removingPercentEncoding {
-            ICloudManager.download(with: documentURL) { (obj, fileSize) in
-                
-                if let maxSize = maxSize {
-                    guard fileSize < maxSize else {
-                        callBack(nil, false, "文件不能大于\(maxSize)m")
-                        return
-                    }
-                }
-                if let data = obj {
-                    let writeUrl =  URL.init(fileURLWithPath: ICloudManager.iCloudBoxPath + fileName)
-                    ICloudFileHelper.createDirectory(atPath: ICloudManager.iCloudBoxPath)
-                    do {
-                        try data.write(to: writeUrl, options: .atomic)
-                        callBack(ICloudDocumentModel.model(path: writeUrl.path), true, "文件写入成功")
-                    } catch {
-                        callBack(nil, false, "文件写入失败")
-                    }
+        
+        var forderPath = documentURL.absoluteString.components(separatedBy: "com~apple~CloudDocs").last ?? ""
+        
+        forderPath = forderPath.replacingOccurrences(of: documentURL.lastPathComponent.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "", with: "")
+        guard let forderName = forderPath.removingPercentEncoding else {
+            callBack(nil, false, "forderName 不存在")
+            return
+        }
+        
+        ICloudManager.download(with: documentURL) { (obj, fileSize) in
+            
+            if let maxSize = maxSize {
+                guard fileSize < maxSize else {
+                    callBack(nil, false, "文件不能大于\(maxSize)m")
+                    return
                 }
             }
-        } else {
-            callBack(nil, false, "文件名不能为空")
+            if let data = obj {
+                let writeUrl = URL.init(fileURLWithPath: ICloudManager.iCloudBoxPath + forderName + documentURL.lastPathComponent)
+                ICloudFileHelper.createDirectory(atPath: ICloudManager.iCloudBoxPath + forderName)
+                do {
+                    try data.write(to: writeUrl, options: .atomic)
+                    callBack(ICloudDocumentModel.model(path: writeUrl.path), true, "文件写入成功")
+                } catch {
+                    callBack(nil, false, "文件写入失败")
+                }
+            }
         }
+        
+    }
+    
+    /// 文件是否在 iCloudBox 存在
+    ///
+    /// - Parameter fileName: 文件名(fileUrl.lastPathComponent) eg. doc.text
+    /// - Returns:
+    open class func documentIsExists(fileName: String) -> URL? {
+        
+        let fileManager = FileManager.default
+        
+        guard let childFilePaths = fileManager.subpaths(atPath: ICloudManager.iCloudBoxDownLoadPath) else {
+            return nil
+        }
+        
+        for path in childFilePaths {
+            // 读取文件名
+            let fileUrl = URL.init(fileURLWithPath: ICloudManager.iCloudBoxDownLoadPath + path)
+            if fileName == fileUrl.lastPathComponent {
+                return fileUrl
+            }
+        }
+        return nil
     }
 }
 
 extension ICloudManager {
-
+    
     /// 清除iCloudBox本地缓存, filePath 为空 清除所有缓存
     ///
     /// - Parameter filePath: 为空 清除所有缓存
@@ -89,10 +118,10 @@ extension ICloudManager {
         do {
             try FileManager.default.removeItem(at: filePath)
         } catch {
-
+            
         }
     }
-
+    
     /// 异步获取iCloudBox 缓存大小
     ///
     /// - Parameter callBack: 大小 kb
@@ -105,7 +134,7 @@ extension ICloudManager {
 }
 
 class iCloudDocument: UIDocument {
-
+    
     var data: NSData?
     
     // 处理文件下载
