@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ICloudPicker"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "icloud driver picker"
   s.swift_version = '4.0'
 
