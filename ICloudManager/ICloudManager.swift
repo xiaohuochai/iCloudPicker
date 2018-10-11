@@ -11,7 +11,7 @@ import UIKit
 public class ICloudManager: NSObject {
     
     /// 存放的默认路径
-    public static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/Doc"
+    public static let iCloudBoxPath = NSHomeDirectory() + "/Documents/iCloudBox/Doc/"
     
     public static let iCloudBoxDownLoadPath = NSHomeDirectory() + "/Documents/iCloudBox/Download/"
     
@@ -56,7 +56,7 @@ public class ICloudManager: NSObject {
             return
         }
         
-        var forderPath = documentURL.absoluteString.components(separatedBy: "com~apple~CloudDocs").last ?? ""
+        var forderPath = documentURL.absoluteString.replacingOccurrences(of: "file:///private/var/mobile/Library/Mobile%20Documents/", with: "")
         
         forderPath = forderPath.replacingOccurrences(of: documentURL.lastPathComponent.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "", with: "")
         guard let forderName = forderPath.removingPercentEncoding else {
